@@ -1,2 +1,4 @@
 rootProject.name='YJQ_REVIEW'
 include ':app'
+include ':lib_base'
+include ':lib_net'
