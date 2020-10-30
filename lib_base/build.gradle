@@ -38,24 +38,33 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    //基础测试库
     testImplementation rootProject.depsLibs.junit
     androidTestImplementation rootProject.depsLibs.extJunit
     androidTestImplementation rootProject.depsLibs.espressoCore
 
 
-    //dex方法数超64k解决
-    implementation rootProject.depsLibs.multidex
-
-
-    api rootProject.depsLibs.appcompat
+    //暴露给上层的基础依赖
+    api rootProject.depsLibs.appcompat//AndoridX支持库
     api rootProject.depsLibs.constraintlayout
-    implementation rootProject.depsLibs.coreKtx
+    api rootProject.depsLibs.coreKtx//kotlin 扩展
+    api rootProject.depsLibs.gson   //Gson
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"//kotlin
+
+
+    //无需暴露给上层的依赖
+    implementation rootProject.depsLibs.multidex //dex方法数超64k解决方法
     implementation rootProject.depsLibs.kotlinReflect
     implementation rootProject.depsLibs.koinScop
     implementation rootProject.depsLibs.KoinViewModel
     implementation rootProject.depsLibs.koinFragmet
     implementation rootProject.depsLibs.orhanobutlogger
     implementation rootProject.depsLibs.coroutines
+
+    /* implementation 与 api 的大致区别
+       implementation 让module在编译时隐藏自己的依赖，但是在运行时这个依赖是对所有模块可见的。
+       api与compile一样，无法隐藏自己所用的依赖。
+       目的：减少多module情况下的构建时间,同时起到依赖隔离的作用.
+     */
 }

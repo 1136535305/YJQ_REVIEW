@@ -36,10 +36,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':lib_base')
 
+    //基础依赖
+    testImplementation rootProject.depsLibs.junit
+    androidTestImplementation rootProject.depsLibs.extJunit
+    androidTestImplementation rootProject.depsLibs.espressoCore
+    implementation project(':lib_base')
+
+
+    //暴露给上层的依赖
     api rootProject.depsLibs.retrofit
     api rootProject.depsLibs.converterGson
-    api rootProject.depsLibs.gson
     api rootProject.depsLibs.loggingInterceptor
+
+
+    //无需暴露给上层的依赖
 }

@@ -5,6 +5,7 @@ import com.szy.yjq_review.databinding.ActivityMainBinding
 import com.szy.yjq_review.viewmodel.MainViewModel
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
+
     override fun initData() {
     }
 
@@ -16,4 +17,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
 }
+
+
 
